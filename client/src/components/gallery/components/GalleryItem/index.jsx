@@ -1,5 +1,6 @@
 import React from "react";
 import "./GalleryItem.css";
+import { Link } from "react-router";
 
 const GalleryItem = ({ item }) => {
   const span = Math.ceil(item.height / 8); // match with grid-auto-rows
@@ -13,6 +14,25 @@ const GalleryItem = ({ item }) => {
         src={item.media}
         alt=''
       />
+      <Link
+        to={`/pin${item.id}`}
+        className='overlay'
+      />
+      <button className='saveButton'>Save</button>
+      <div className='overlayIcons'>
+        <button>
+          <img
+            src='/general/share.svg'
+            alt=''
+          />
+        </button>
+        <button>
+          <img
+            src='/general/more.svg'
+            alt=''
+          />
+        </button>
+      </div>
     </div>
   );
 };

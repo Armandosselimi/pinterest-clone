@@ -1,10 +1,73 @@
 .galleryItem {
   display: flex;
   width: 100%;
+  position: relative;
 }
 
 .galleryItem img {
   width: 100%;
   object-fit: cover;
   border-radius: 1rem;
+}
+
+.overlay,
+.saveButton,
+.overlayIcons {
+  display: none;
+}
+
+.galleryItem:hover .overlay {
+  display: block;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+}
+
+.galleryItem:hover .saveButton {
+  display: block;
+
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+  background-color: #e50829;
+  color: white;
+  border-radius: 1.5rem;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  width: max-content;
+}
+
+.galleryItem:hover .overlayIcons {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.overlayIcons button {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 100%;
+  background-color: white;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlayIcons button svg {
+  width: 1.125rem;
+  height: 1.25rem;
 }
