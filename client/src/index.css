@@ -1,3 +1,42 @@
+:root {
+  /* Primary brand color */
+  --color-primary: #e60023;
+
+  /* Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-light: #f9f9f9;
+  --color-bg-hover: #f0f0f0;
+
+  /* Text colors */
+  --color-text-primary: #111111;
+  --color-text-secondary: #767676;
+  --color-text-light: #ffffff;
+
+  /* Borders and dividers */
+  --color-border: #e2e2e2;
+
+  /* Buttons */
+  --color-btn-primary: #e60023;
+  --color-btn-hover: #ad081b;
+  --color-btn-secondary: #efefef;
+  --color-btn-secondary-hover: #e2e2e2;
+
+  /* Shadows */
+  --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Fonts */
+  --font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-size-base: 16px;
+  --font-size-sm: 14px;
+  --font-size-lg: 18px;
+}
+
 /* 1. Use a more-intuitive box-sizing model */
 *,
 *::before,
@@ -81,4 +120,11 @@ li {
 
 a {
   text-decoration: none;
+  color: inherit;
+}
+
+body {
+  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
 }

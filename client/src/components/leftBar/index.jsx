@@ -2,7 +2,67 @@ import React from "react";
 import "./LeftBar.css";
 
 const LeftBar = () => {
-  return <div>LeftBar</div>;
+  return (
+    <div className='leftBar'>
+      <div className='menuIcons'>
+        <a
+          href='/'
+          className='menuIcon'
+        >
+          <img
+            className='logo'
+            src='/general/logo.png'
+            alt='pinterest log'
+          />
+        </a>
+        <a
+          href='/'
+          className='menuIcon'
+        >
+          <img
+            src='/general/home.svg'
+            alt='pinterest log'
+          />
+        </a>
+        <a
+          href='/'
+          className='menuIcon'
+        >
+          <img
+            src='/general/create.svg'
+            alt='pinterest log'
+          />
+        </a>
+        <a
+          href='/'
+          className='menuIcon'
+        >
+          <img
+            src='/general/updates.svg'
+            alt='pinterest log'
+          />
+        </a>
+        <a
+          href='/'
+          className='menuIcon'
+        >
+          <img
+            src='/general/messages.svg'
+            alt='pinterest log'
+          />
+        </a>
+      </div>
+      <a
+        href='/'
+        className='menuIcon'
+      >
+        <img
+          src='/general/settings.svg'
+          alt='pinterest log'
+        />
+      </a>
+    </div>
+  );
 };
 
 export default LeftBar;

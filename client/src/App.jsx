@@ -1,9 +1,10 @@
 import LeftBar from "components/leftBar";
 import TopBar from "components/TopBar";
+import "./App.css";
 
 function App() {
   return (
-    <div>
+    <div className='app'>
       <LeftBar />
       <div className='content'>
         <TopBar />
