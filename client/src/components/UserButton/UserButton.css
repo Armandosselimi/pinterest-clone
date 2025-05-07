@@ -18,6 +18,32 @@
   cursor: pointer;
 }
 
+.userOptions {
+  z-index: 999;
+  position: absolute;
+  right: 0;
+  top: 130%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.151);
+
+  display: flex;
+  flex-direction: column;
+  font-size: 0.875rem;
+}
+
+.userOption {
+  cursor: pointer;
+  padding: 0.5rem;
+  border: 0.5rem;
+}
+
+.userOption:hover {
+  background-color: #f1f1f1;
+  color: grey;
+}
+
 .loginLink {
   font-size: 1.125rem;
   padding: 1rem;
@@ -28,17 +54,8 @@
   background-color: #f1f1f1;
 }
 
-.userOptions {
-  z-index: 999;
-  position: absolute;
-  right: 0;
-  top: 130%;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  background-color: white;
-  box-shadow: 0 0 3px 0;
-
-  display: flex;
-  flex-direction: column;
-  font-size: 0.875;
+@media (width <= 29.75em) {
+  .userButton {
+    display: none;
+  }
 }
