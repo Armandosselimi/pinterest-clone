@@ -1,14 +1,15 @@
 import React from "react";
 import "./TopBar.css";
 import UserButton from "components/UserButton";
+import Image from "components/Image";
 
 const TopBar = () => {
   return (
     <div className='topBar'>
       {/* Search */}
       <div className='search'>
-        <img
-          src='/general/search.svg'
+        <Image
+          path='/general/search.svg'
           alt=''
         />
         <input

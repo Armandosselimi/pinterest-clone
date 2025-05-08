@@ -1,5 +1,6 @@
 import React from "react";
 import "./LeftBar.css";
+import Image from "components/Image";
 
 const LeftBar = () => {
   return (
@@ -9,9 +10,9 @@ const LeftBar = () => {
           href='/'
           className='menuIcon'
         >
-          <img
+          <Image
             className='logo'
-            src='/general/logo.png'
+            path='/general/logo.png'
             alt='pinterest log'
           />
         </a>
@@ -19,8 +20,8 @@ const LeftBar = () => {
           href='/'
           className='menuIcon'
         >
-          <img
-            src='/general/home.svg'
+          <Image
+            path='/general/home.svg'
             alt='pinterest log'
           />
         </a>
@@ -28,8 +29,8 @@ const LeftBar = () => {
           href='/'
           className='menuIcon'
         >
-          <img
-            src='/general/create.svg'
+          <Image
+            path='/general/create.svg'
             alt='pinterest log'
           />
         </a>
@@ -37,8 +38,8 @@ const LeftBar = () => {
           href='/'
           className='menuIcon'
         >
-          <img
-            src='/general/updates.svg'
+          <Image
+            path='/general/updates.svg'
             alt='pinterest log'
           />
         </a>
@@ -46,8 +47,8 @@ const LeftBar = () => {
           href='/'
           className='menuIcon'
         >
-          <img
-            src='/general/messages.svg'
+          <Image
+            path='/general/messages.svg'
             alt='pinterest log'
           />
         </a>
@@ -56,8 +57,8 @@ const LeftBar = () => {
         href='/'
         className='menuIcon'
       >
-        <img
-          src='/general/settings.svg'
+        <Image
+          path='/general/settings.svg'
           alt='pinterest log'
         />
       </a>
