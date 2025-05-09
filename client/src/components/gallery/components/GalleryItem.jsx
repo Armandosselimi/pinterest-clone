@@ -27,14 +27,14 @@ const GalleryItem = ({ item }) => {
       <button className='saveButton'>Save</button>
       <div className='overlayIcons'>
         <button>
-          <img
-            src='/general/share.svg'
+          <Image
+            path='/general/share.svg'
             alt=''
           />
         </button>
         <button>
-          <img
-            src='/general/more.svg'
+          <Image
+            path='/general/more.svg'
             alt=''
           />
         </button>
