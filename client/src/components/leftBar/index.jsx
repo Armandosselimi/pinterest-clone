@@ -1,13 +1,14 @@
 import React from "react";
 import "./LeftBar.css";
 import Image from "components/Image";
+import { Link } from "react-router";
 
 const LeftBar = () => {
   return (
     <div className='leftBar'>
       <div className='menuIcons'>
-        <a
-          href='/'
+        <Link
+          to='/'
           className='menuIcon'
         >
           <Image
@@ -15,45 +16,45 @@ const LeftBar = () => {
             path='/general/logo.png'
             alt='pinterest log'
           />
-        </a>
-        <a
-          href='/'
+        </Link>
+        <Link
+          to='/'
           className='menuIcon'
         >
           <Image
             path='/general/home.svg'
             alt='pinterest log'
           />
-        </a>
-        <a
-          href='/'
+        </Link>
+        <Link
+          to='/create'
           className='menuIcon'
         >
           <Image
             path='/general/create.svg'
             alt='pinterest log'
           />
-        </a>
-        <a
-          href='/'
+        </Link>
+        <Link
+          to='/'
           className='menuIcon'
         >
           <Image
             path='/general/updates.svg'
             alt='pinterest log'
           />
-        </a>
-        <a
-          href='/'
+        </Link>
+        <Link
+          to='/'
           className='menuIcon'
         >
           <Image
             path='/general/messages.svg'
             alt='pinterest log'
           />
-        </a>
+        </Link>
       </div>
-      <a
+      <Link
         href='/'
         className='menuIcon'
       >
@@ -61,7 +62,7 @@ const LeftBar = () => {
           path='/general/settings.svg'
           alt='pinterest log'
         />
-      </a>
+      </Link>
     </div>
   );
 };
