@@ -1,4 +1,5 @@
 import express from "express";
+import connectDB from "./utils/connectDB.js";
 
 import userRouter from "./routes/user.route.js";
 import pinRouter from "./routes/pin.route.js";
@@ -12,6 +13,7 @@ app.use("/pins", pinRouter);
 app.use("/comments", commentRouter);
 app.use("/boards", boardRouter);
 
-app.listen(8000, () => {
+app.listen(process.env.PORT, () => {
+  connectDB();
   console.log("server is running2!");
 });
