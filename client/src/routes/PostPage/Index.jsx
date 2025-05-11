@@ -15,8 +15,6 @@ const PostPage = () => {
     queryFn: () => apiRequest.get(`/pins/${id}`).then((res) => res.data),
   });
 
-  console.log(data);
-
   if (isPending) return "Loading...";
   if (error) return "An error occurred" + error.message;
   if (!data) return "Pin not found";
