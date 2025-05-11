@@ -18,7 +18,7 @@ const GalleryItem = ({ item }) => {
         h={optimizedHeight}
       />
       <Link
-        to={`/pin${item._id}`}
+        to={`/pin/${item._id}`}
         className='overlay'
       />
       <button className='saveButton'>Save</button>
