@@ -1,110 +1,52 @@
 import React from "react";
+import axios from "axios";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import "./Gallery.css";
 import GalleryItem from "./components/GalleryItem";
+import InfiniteScroll from "react-infinite-scroll-component";
 
-// Temp data
-const data = [
-  {
-    id: 1,
-    media: "/pins/pin1.jpeg",
-    width: 1260,
-    height: 1000,
-  },
-  {
-    id: 2,
-    media: "/pins/pin2.jpeg",
-    width: 1260,
-    height: 1400,
-  },
+const fetchPins = async ({ pageParam, search }) => {
+  const res = await axios.get(
+    `${import.meta.env.VITE_API_ENDPOINT}/pins?cursor=${pageParam}&search=${
+      search || ""
+    }`
+  );
+  return res.data;
+};
 
-  {
-    id: 3,
-    media: "/pins/pin3.jpeg",
-    width: 1260,
-    height: 1400,
-  },
-  {
-    id: 4,
-    media: "/pins/pin4.jpeg",
-    width: 1260,
-    height: 1000,
-  },
+const Gallery = ({ search }) => {
+  const { data, fetchNextPage, hasNextPage, status } = useInfiniteQuery({
+    queryKey: ["pins", search],
 
-  {
-    id: 5,
-    media: "/pins/pin5.jpeg",
-    width: 1260,
-    height: 1000,
-  },
-  {
-    id: 6,
-    media: "/pins/pin6.jpeg",
-    width: 1260,
-    height: 1400,
-  },
+    queryFn: ({ pageParam = 0 }) => fetchPins({ pageParam, search }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
+  });
 
-  {
-    id: 7,
-    media: "/pins/pin7.jpeg",
-    width: 1260,
-    height: 1400,
-  },
-  {
-    id: 8,
-    media: "/pins/pin8.jpeg",
-    width: 1260,
-    height: 1000,
-  },
-  {
-    id: 9,
-    media: "/pins/pin9.jpeg",
-    width: 1260,
-    height: 1400,
-  },
-  {
-    id: 10,
-    media: "/pins/pin10.jpeg",
-    width: 1260,
-    height: 1000,
-  },
+  console.log(data);
+  const allPins = data?.pages.flatMap((page) => page.pins) || [];
 
-  {
-    id: 11,
-    media: "/pins/pin11.jpeg",
-    width: 1260,
-    height: 1000,
-  },
-  {
-    id: 12,
-    media: "/pins/pin12.jpeg",
-    width: 1260,
-    height: 1400,
-  },
+  if (status === "error") return "An error has occurred: ";
 
-  {
-    id: 13,
-    media: "/pins/pin13.jpeg",
-    width: 1260,
-    height: 1400,
-  },
-  {
-    id: 14,
-    media: "/pins/pin14.jpeg",
-    width: 1260,
-    height: 1000,
-  },
-];
+  if (status === "pending") return <p>Loading...</p>;
 
-const Gallery = () => {
   return (
-    <div className='gallery'>
-      {data.map((item) => (
-        <GalleryItem
-          key={item.id}
-          item={item}
-        />
-      ))}
-    </div>
+    <InfiniteScroll
+      dataLength={allPins.length}
+      next={fetchNextPage}
+      hasMore={!!hasNextPage}
+      loader={<p>Loading more posts...</p>}
+      endMessage={<p>All post loaded.</p>}
+    >
+      <div className='gallery'>
+        {allPins?.map((item) => (
+          <GalleryItem
+            key={item._id}
+            item={item}
+          />
+        ))}
+      </div>
+    </InfiniteScroll>
   );
 };
 
