@@ -10,7 +10,6 @@ const UserButton = () => {
   const navigate = useNavigate();
 
   const { currentUser, removeCurrentUser } = useAuthStore();
-  console.log(currentUser);
 
   const handleLogout = async () => {
     try {

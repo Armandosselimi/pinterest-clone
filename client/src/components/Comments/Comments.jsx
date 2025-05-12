@@ -11,8 +11,6 @@ const Comments = ({ id }) => {
     queryFn: () => apiRequest.get(`/comments/${id}`).then((res) => res.data),
   });
 
-  console.log(data);
-
   if (isPending) return "Loading...";
   if (error) return "An error occurred" + error.message;
 
@@ -31,7 +29,7 @@ const Comments = ({ id }) => {
         ))}
       </div>
       {/* FORM */}
-      <CommentForm />
+      <CommentForm id={id} />
     </div>
   );
 };

@@ -71,7 +71,6 @@ const seedDB = async () => {
     }
   }
 
-  console.log("Database seeded successfully!");
   process.exit(0);
 };
 

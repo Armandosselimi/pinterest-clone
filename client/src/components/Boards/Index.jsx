@@ -15,7 +15,6 @@ const Boards = ({ userId }) => {
   if (isPending) return "Loading...";
   if (error) return "An error occurred" + error.message;
   if (!data) return "User not found";
-  console.log(data);
 
   return (
     <div className='collections'>
