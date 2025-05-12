@@ -1,4 +1,5 @@
 import Pin from "../models/pin.model.js";
+import User from "../models/user.model.js";
 
 export const getPins = async (req, res) => {
   const pageNumber = Number(req.query.cursor) || 0;
