@@ -9,7 +9,7 @@ import boardRouter from "./routes/board.route.js";
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: process.env.CLIENT_URL }));
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 
 app.use("/users", userRouter);
 app.use("/pins", pinRouter);
@@ -18,5 +18,4 @@ app.use("/boards", boardRouter);
 
 app.listen(process.env.PORT, () => {
   connectDB();
-  console.log("server is running2!");
 });

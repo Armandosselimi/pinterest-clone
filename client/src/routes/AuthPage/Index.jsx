@@ -1,11 +1,15 @@
 import "./AuthPage.css";
 import Image from "components/Image";
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import apiRequest from "utils/apiRequest";
+import useAuthStore from "utils/authStore";
 
 const AuthPage = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const { setCurrentUser } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,7 +17,12 @@ const AuthPage = () => {
     const data = Object.fromEntries(formData);
 
     try {
-      const res = await apiRequest.post("/users/auth/register", data);
+      const res = await apiRequest.post(
+        `/users/auth/${isRegister ? "register" : "login"}`,
+        data
+      );
+      setCurrentUser(res.data);
+      navigate("/");
     } catch (error) {
       setError(error.response.data.message);
     }
@@ -80,7 +89,10 @@ const AuthPage = () => {
             {error && <p className='error'>{error}</p>}
           </form>
         ) : (
-          <form key='loginForm'>
+          <form
+            key='loginForm'
+            onSubmit={handleSubmit}
+          >
             <div className='formGroup'>
               <label htmlFor='email'>Email</label>
               <input
