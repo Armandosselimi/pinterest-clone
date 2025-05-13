@@ -4,9 +4,12 @@
   grid-template-columns: 1fr 3fr 1fr;
 }
 
+/* LEFT SIDE */
+
 .layers {
   margin-top: 2rem;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 
@@ -44,4 +47,29 @@
   height: 3rem;
   border-radius: 0.5rem;
   overflow: hidden;
+}
+
+/* MIDDLE */
+
+.workspace {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e9e9e9;
+  padding-block: 4rem;
+}
+
+.canvas {
+  width: 23.5rem;
+  position: relative;
+  border-radius: 2rem;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas img {
+  width: 100%;
 }
