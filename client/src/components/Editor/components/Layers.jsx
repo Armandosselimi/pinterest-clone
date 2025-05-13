@@ -3,10 +3,13 @@ import React from "react";
 import useEditorStore from "utils/editorStore";
 
 const Layers = () => {
-  const { selectedLayer, setSelectedLayer } = useEditorStore();
+  const { selectedLayer, setSelectedLayer, addText } = useEditorStore();
 
   const handleSelectedLayer = (selectedLayer) => {
     setSelectedLayer(selectedLayer);
+    if (selectedLayer === "text") {
+      addText();
+    }
   };
 
   return (

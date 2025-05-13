@@ -73,3 +73,35 @@
 .canvas img {
   width: 100%;
 }
+
+.text {
+  position: absolute;
+  z-index: 999;
+  max-width: 100%;
+  border: 1px dashed red;
+}
+
+.text input {
+  width: 100%;
+  font-size: inherit;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: grab;
+}
+
+.deleteTextButton {
+  position: absolute;
+  top: -36px;
+  right: 0;
+  background-color: #f0f0f0;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
