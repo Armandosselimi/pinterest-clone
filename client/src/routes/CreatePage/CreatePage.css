@@ -65,6 +65,32 @@
   color: gray;
 }
 
+.preview {
+  width: 23.375rem;
+  position: relative;
+}
+
+.preview img {
+  border-radius: 2rem;
+  width: 100%;
+}
+
+.editIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.375rem;
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .createForm {
   width: 36.5rem;
   display: flex;

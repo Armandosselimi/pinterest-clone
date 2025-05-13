@@ -21,6 +21,7 @@ const Boards = ({ userId }) => {
       {/* COLLECTION */}
       {data?.map((board) => (
         <Link
+          key={board._id}
           to={`/search?boardId=${board._id}`}
           className='collection'
         >

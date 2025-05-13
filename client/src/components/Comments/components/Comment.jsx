@@ -12,8 +12,6 @@ const deleteComment = async (commentId) => {
 
 const Comment = ({ comment, id }) => {
   const { currentUser } = useAuthStore();
-  console.log(comment);
-  console.log(currentUser);
 
   const queryClient = useQueryClient();
 

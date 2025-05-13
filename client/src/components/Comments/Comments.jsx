@@ -10,8 +10,6 @@ const Comments = ({ id }) => {
     queryKey: ["comments", id],
     queryFn: () => apiRequest.get(`/comments/${id}`).then((res) => res.data),
   });
-  console.log("this is id: " + id);
-  console.log(data);
 
   if (isPending) return "Loading...";
   if (error) return "An error occurred" + error.message;

@@ -22,6 +22,9 @@ const userSchema = new Schema(
     img: {
       type: String,
     },
+    follower: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
