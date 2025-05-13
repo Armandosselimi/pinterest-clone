@@ -1,6 +1,6 @@
 import Editor from "components/Editor";
 import "./CreatePage.css";
-import Image from "components/Image";
+import IKIImage from "components/Image";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import useAuthStore from "utils/authStore";
@@ -8,6 +8,7 @@ import useAuthStore from "utils/authStore";
 const CreatePage = () => {
   const [file, setFile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [prevImg, setPrevImg] = useState({ url: "", height: 0, width: 0 });
   const { currentUser } = useAuthStore();
   const navigate = useNavigate();
 
@@ -17,7 +18,25 @@ const CreatePage = () => {
     }
   }, [navigate, currentUser]);
 
-  const previewImgURL = file ? URL.createObjectURL(file) : null;
+  useEffect(() => {
+    if (!file) return;
+
+    const objectUrl = URL.createObjectURL(file);
+    const img = new Image();
+    img.src = objectUrl;
+
+    img.onload = () => {
+      setPrevImg({
+        url: objectUrl,
+        width: img.width,
+        height: img.height,
+      });
+    };
+
+    return () => {
+      URL.revokeObjectURL(objectUrl); // Clean up
+    };
+  }, [file]);
 
   return (
     <div className='createPage'>
@@ -27,20 +46,20 @@ const CreatePage = () => {
       </div>
 
       {isEditing ? (
-        <Editor />
+        <Editor prevImg={prevImg} />
       ) : (
         <div className='createBottom'>
-          {previewImgURL ? (
+          {prevImg.url ? (
             <div className='preview'>
               <img
-                src={previewImgURL}
+                src={prevImg.url}
                 alt=''
               />
               <div
                 className='editIcon'
                 onClick={() => setIsEditing(true)}
               >
-                <Image
+                <IKIImage
                   path='/general/edit.svg'
                   alt=''
                 />
@@ -53,7 +72,7 @@ const CreatePage = () => {
                 className='upload'
               >
                 <div className='uploadTitle'>
-                  <Image
+                  <IKIImage
                     path='/general/upload.svg'
                     alt=''
                   />
