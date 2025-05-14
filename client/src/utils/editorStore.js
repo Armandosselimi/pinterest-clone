@@ -29,6 +29,23 @@ const useEditorStore = create((set) => ({
     }),
   setCanvasOptions: (newCanvasOptions) =>
     set({ canvasOptions: newCanvasOptions }),
+  resetStore: () =>
+    set({
+      selectedLayer: "canvas",
+      textOptions: {
+        text: "",
+        fontSize: 48,
+        color: "#000000",
+        top: 48,
+        left: 0,
+      },
+      canvasOptions: {
+        height: 0,
+        orientation: "",
+        size: "original",
+        backgroundColor: "#008080",
+      },
+    }),
 }));
 
 export default useEditorStore;

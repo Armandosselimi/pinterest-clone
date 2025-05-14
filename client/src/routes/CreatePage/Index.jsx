@@ -1,9 +1,16 @@
 import Editor from "components/Editor";
 import "./CreatePage.css";
 import IKIImage from "components/Image";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useEffect, useRef, useState } from "react";
+import { data, useNavigate } from "react-router";
 import useAuthStore from "utils/authStore";
+import useEditorStore from "utils/editorStore";
+import { useMutation, useQueries, useQuery } from "@tanstack/react-query";
+import apiRequest from "utils/apiRequest";
+
+const addPost = async (post) => {
+  const res = await apiRequest.post("/pins", post);
+};
 
 const CreatePage = () => {
   const [file, setFile] = useState(null);
@@ -11,6 +18,10 @@ const CreatePage = () => {
   const [prevImg, setPrevImg] = useState({ url: "", height: 0, width: 0 });
   const { currentUser } = useAuthStore();
   const navigate = useNavigate();
+  const formRef = useRef();
+  const { textOptions, canvasOptions, resetStore } = useEditorStore();
+  const [newBoard, setNewBoard] = useState("");
+  const [isNewBoardOpen, setIsNewBoardOpen] = useState(false);
 
   useEffect(() => {
     if (!currentUser) {
@@ -38,11 +49,42 @@ const CreatePage = () => {
     };
   }, [file]);
 
+  const mutation = useMutation({
+    mutationFn: addPost,
+    onSuccess: (data) => {
+      resetStore();
+      navigate(`/pin/${data._id}`);
+    },
+  });
+
+  const handleSubmit = () => {
+    if (isEditing) {
+      setIsEditing(false);
+    } else {
+      const formData = new FormData();
+      formData.append("media", file);
+      formData.append("textOptions", JSON.stringify(textOptions));
+      formData.append("canvasOptions", JSON.stringify(canvasOptions));
+      formData.append("newBoard", newBoard);
+
+      mutation.mutate(formData);
+    }
+  };
+
+  const { data, isPending, error } = useQuery({
+    queryKey: ["formBoards"],
+    queryFn: () => apiRequest.get(`/boards`).then((res) => res.data),
+  });
+
+  const handleNewBoard = () => {
+    setIsNewBoardOpen((prev) => !prev);
+  };
+
   return (
     <div className='createPage'>
       <div className='createTop'>
         <h1>{isEditing ? "Design your Pin" : "Create Pin"}</h1>
-        <button>{isEditing ? "Done" : "Publish"}</button>
+        <button onClick={handleSubmit}>{isEditing ? "Done" : "Publish"}</button>
       </div>
 
       {isEditing ? (
@@ -91,7 +133,10 @@ const CreatePage = () => {
               />
             </>
           )}
-          <form className='createForm'>
+          <form
+            className='createForm'
+            ref={formRef}
+          >
             <div className='createFormItem'>
               <label htmlFor='title'>Title</label>
               <input
@@ -120,17 +165,41 @@ const CreatePage = () => {
                 placeholder='Add a link'
               />
             </div>
-            <div className='createFormItem'>
-              <label htmlFor='board'>Board</label>
-              <select
-                name='board'
-                id='board'
-              >
-                <option value='1'>Board 1</option>
-                <option value='2'>Board 2</option>
-                <option value='3'>Board 3</option>
-              </select>
-            </div>
+
+            {!isPending ||
+              (!error && (
+                <div className='createFormItem'>
+                  <label htmlFor='board'>Board</label>
+                  <select
+                    name='board'
+                    id='board'
+                  >
+                    <option value=''>Chose a board</option>
+                    {data?.map((board) => (
+                      <option
+                        value={board._id}
+                        key={board._id}
+                      >
+                        {board.title}
+                      </option>
+                    ))}
+                  </select>
+                  <div className='newBoard'>
+                    {newBoard && (
+                      <div className='newBoardContainer'>
+                        <div className='newBoardItem'>{newBoard}</div>
+                      </div>
+                    )}
+                    <div
+                      className='createBoardButton'
+                      onClick={handleNewBoard}
+                    >
+                      Create new board
+                    </div>
+                  </div>
+                </div>
+              ))}
+
             <div className='createFormItem'>
               <label htmlFor='tag'>Tagged topics</label>
               <input
