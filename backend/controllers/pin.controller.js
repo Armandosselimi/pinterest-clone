@@ -1,5 +1,6 @@
 import Pin from "../models/pin.model.js";
 import User from "../models/user.model.js";
+import sharp from "sharp";
 
 export const getPins = async (req, res) => {
   const pageNumber = Number(req.query.cursor) || 0;
@@ -41,4 +42,38 @@ export const getPin = async (req, res) => {
   );
 
   res.status(200).json(pin);
+};
+
+export const createPin = async (req, res) => {
+  const { title, description, link, board, tags, textOptions, canvasOptions } =
+    req.body;
+
+  const media = req.files.media;
+
+  if ((!title, !description, !media)) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  const parsedTextOptions = JSON.parse(textOptions || "{}");
+  const parsedCanvasOptions = JSON.parse(canvasOptions || "{}");
+
+  const metadata = await sharp(media.data).metadata();
+  console.log(metadata);
+  const originalOrientation =
+    metadata.width < metadata.height ? "portrait" : "landscape";
+  const originalAspectRatio = metadata.width / metadata.height;
+
+  let clientAspectRatio;
+  let width;
+  let height;
+
+  if (parsedCanvasOptions.size !== "original") {
+    clientAspectRatio =
+      parsedCanvasOptions.size.split(":")[0] /
+      parsedCanvasOptions.size.split(":")[1];
+  } else {
+    parsedCanvasOptions.orientation === originalOrientation
+      ? (clientAspectRatio = originalOrientation)
+      : (clientAspectRatio = 1 / originalAspectRatio);
+  }
 };
