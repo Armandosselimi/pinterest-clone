@@ -126,7 +126,8 @@
   padding: 1rem;
 }
 
-.textColor {
+.textColor,
+.bgColor {
   position: relative;
 }
 
@@ -141,4 +142,34 @@
   position: absolute;
   top: 120%;
   left: 0;
+}
+
+.orientations,
+.sizes {
+  width: max-content;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: #e9e9e9;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+}
+
+.orientation,
+.size {
+  min-width: 2rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.orientation.selected,
+.size.selected {
+  background-color: white;
 }

@@ -3,7 +3,8 @@ import React from "react";
 import useEditorStore from "utils/editorStore";
 
 const Layers = () => {
-  const { selectedLayer, setSelectedLayer, addText } = useEditorStore();
+  const { selectedLayer, setSelectedLayer, addText, canvasOptions } =
+    useEditorStore();
 
   const handleSelectedLayer = (selectedLayer) => {
     setSelectedLayer(selectedLayer);
@@ -37,7 +38,7 @@ const Layers = () => {
       >
         <div
           className='layerImage'
-          style={{ backgroundColor: "teal" }}
+          style={{ backgroundColor: canvasOptions?.backgroundColor || "teal" }}
         ></div>
         <span>Canvas</span>
       </div>
