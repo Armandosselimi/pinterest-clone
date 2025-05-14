@@ -6,15 +6,17 @@ const WorkSpace = ({ prevImg }) => {
   const { textOptions, setTextOptions, canvasOptions, setCanvasOptions } =
     useEditorStore();
 
+  const CANVAS_WIDTH = 375;
+
   useEffect(() => {
     if (canvasOptions.height === 0) {
-      const canvasHeight = (375 * prevImg.height) / prevImg.width;
+      const canvasHeight = (CANVAS_WIDTH * prevImg.height) / prevImg.width;
       console.log(canvasHeight);
 
       setCanvasOptions({
         ...canvasOptions,
         height: canvasHeight,
-        orientation: canvasHeight > 375 ? "portrait" : "landscape",
+        orientation: canvasHeight > CANVAS_WIDTH ? "portrait" : "landscape",
       });
     }
   }, [prevImg, canvasOptions, setCanvasOptions]);

@@ -79,25 +79,34 @@ const Options = ({ prevImg }) => {
   console.log(canvasOptions);
   const [openColorPicker, setOpenColorPicker] = useState(false);
 
+  const CANVAS_WIDTH = 375;
+  const originalOrientation =
+    prevImg.width < prevImg.height ? "portrait" : "landscape";
+
   const handleSizeClick = (size) => {
     let newHeight;
+
     if (size === "original") {
-      if (canvasOptions.orientation === "portrait") {
-        newHeight = (375 * prevImg.width) / prevImg.height;
+      if (originalOrientation === canvasOptions.orientation) {
+        newHeight = (CANVAS_WIDTH * prevImg.height) / prevImg.width;
       } else {
-        newHeight = (375 * prevImg.height) / prevImg.width;
+        newHeight = (CANVAS_WIDTH * prevImg.width) / prevImg.height;
       }
     } else {
-      newHeight = (375 * size.height) / size.width;
+      newHeight = (CANVAS_WIDTH * size.height) / size.width;
     }
 
     setCanvasOptions({ ...canvasOptions, size: size.name, height: newHeight });
   };
+
   const handleOrientationClick = (orientation) => {
-    const newHeight =
-      orientation === "portrait"
-        ? (375 * prevImg.width) / prevImg.height
-        : (375 * prevImg.height) / prevImg.width;
+    let newHeight;
+
+    if (originalOrientation === orientation) {
+      newHeight = (CANVAS_WIDTH * prevImg.height) / prevImg.width;
+    } else {
+      newHeight = (CANVAS_WIDTH * prevImg.width) / prevImg.height;
+    }
 
     setCanvasOptions({
       ...canvasOptions,
