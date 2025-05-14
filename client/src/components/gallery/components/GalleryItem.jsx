@@ -11,7 +11,6 @@ const GalleryItem = ({ item }) => {
       style={{ gridRowEnd: `span ${Math.ceil(item.height / 100)}` }}
     >
       <Image
-        src={item.media}
         path={item.media}
         alt=''
         w={372}

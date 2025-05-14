@@ -2,10 +2,10 @@ import Editor from "components/Editor";
 import "./CreatePage.css";
 import IKIImage from "components/Image";
 import React, { useEffect, useRef, useState } from "react";
-import { data, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import useAuthStore from "utils/authStore";
 import useEditorStore from "utils/editorStore";
-import { useMutation, useQueries, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import apiRequest from "utils/apiRequest";
 import BoardForm from "./BoardForm";
 

@@ -32,7 +32,7 @@ const PostPage = () => {
       <div className='postContainer'>
         <div className='postImg'>
           <Image
-            src={data.media}
+            path={data.media}
             w={746}
             alt=''
           />
@@ -43,7 +43,7 @@ const PostPage = () => {
             to={`/${data.user.username}`}
             className='postUser'
           >
-            <Image src={data.user.img || "/general/noAvatar.png"} />
+            <Image path={data.user.img || "/general/noAvatar.png"} />
             <span>{data.user.displayName}</span>
           </Link>
           <Comments id={data._id} />
