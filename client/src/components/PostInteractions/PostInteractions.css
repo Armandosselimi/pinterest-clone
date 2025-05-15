@@ -11,6 +11,11 @@
   gap: 0.5rem;
 }
 
+.interactionIcons img,
+.interactionIcons svg {
+  cursor: pointer;
+}
+
 .postInteractions button {
   padding: 1rem;
   border: none;
